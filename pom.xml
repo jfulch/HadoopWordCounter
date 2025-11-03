@@ -4,6 +4,8 @@
   <artifactId>myartifactid</artifactId>
   <version>0.0-SNAPSHOT</version>
   <dependencies>
+    <!-- NOTE: Hadoop dependencies removed to avoid mismatch with legacy Hadoop 1.x jars in ./lib.
+         Replit build uses the pre-bundled jars directly; this POM is retained only for future migration. -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -25,6 +27,17 @@
   </dependencies>
   <build>
     <plugins>
+      <!-- Optional: build an uber-jar with dependencies excluded (we rely on Hadoop's classpath normally) -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.11.0</version>
+        <configuration>
+          <!-- Match Replit's Java 17 environment -->
+          <source>17</source>
+          <target>17</target>
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>de.qaware.maven</groupId>
         <artifactId>go-offline-maven-plugin</artifactId>
@@ -48,6 +61,29 @@
           </dynamicDependencies>
         </configuration>
       </plugin>
+      <!-- Shade plugin if you later want a self-contained jar (commented for now)
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.5.1</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals><goal>shade</goal></goals>
+            <configuration>
+              <createDependencyReducedPom>true</createDependencyReducedPom>
+              <filters>
+                <filter>
+                  <artifact>*:*</artifact>
+                  <excludes>
+                    <exclude>org/apache/hadoop/**</exclude>
+                  </excludes>
+                </filter>
+              </filters>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin> -->
     </plugins>
   </build>
 </project>

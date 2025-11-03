@@ -1,0 +1,74 @@
+# === Java / Hadoop / Replit Git Ignore ===
+# Ignore files generated during build and execution
+unigram_index.txt
+selected_bigram_index.txt
+
+# Generated Java class files
+*.class
+
+# Maven / build output
+/target/
+/classes/
+/test-classes/
+/dependency/
+
+# Hadoop / MapReduce job output directories (regenerate via scripts)
+/out/
+/unigram_out/
+/bigrams_out/
+
+# Keep the final index artifacts for homework submission
+# (Do NOT ignore these)
+#!unigram_index.txt
+#!selected_bigram_index.txt
+
+# Logs / temp / cache
+*.log
+*.tmp
+*.swp
+*.swo
+hs_err_pid*
+replay_pid*
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+
+# IDE specific (optional; comment out if you want to keep Eclipse metadata)
+.classpath
+.project
+.settings/
+.idea/
+*.iml
+
+# VS Code workspace settings (keep the main workspace file but ignore local settings if desired)
+.vscode/
+
+# Replit specific: keep these because they define the environment
+# .replit
+# replit.nix
+
+# Data sets: optionally ignore large full data; uncomment if you do not wish to commit
+# /fulldata/
+# /devdata/
+# /data/fulldata/
+# /data/devdata/
+
+# Icon / generated assets (keep if needed)
+# generated-icon.png
+
+# Script local overrides (if you create run-all or dev variants)
+run-all-local.sh
+
+# Backup files
+*~
+*.bak
+
+# Node / other environment caches (future-proofing if added later)
+node_modules/
+
+# Python cache (if you experiment with Python helpers)
+__pycache__/
+*.pyc
+
+# End of .gitignore
